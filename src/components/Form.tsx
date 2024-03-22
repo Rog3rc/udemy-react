@@ -2,7 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 interface Props {
-  addTask: any;
+  addTask: Function;
 }
 
 const Form: React.FC<Props> = ({ addTask }) => {

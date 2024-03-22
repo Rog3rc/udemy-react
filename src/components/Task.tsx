@@ -1,20 +1,29 @@
+import Object from "../interfaces/taskInterface";
+
 interface Props {
-  task: any;
+  task: Object;
+  deleteTask: Function;
+  updateTask: Function;
 }
 
-const Task: React.FC<Props> = ({ task }) => {
+const Task: React.FC<Props> = ({ task, deleteTask, updateTask }) => {
   const { id, title, description, state, priority } = task;
   return (
     <tr key={id}>
-      <td>
+      <td
+        className={`d-felx justify-content-between align-items-start
+          ${state && "text-decoration-line-through"}`}
+      >
         {title}{" "}
         <span className="badge text-bg-success">{priority && "Priority"}</span>
       </td>
-      <td>{description}</td>
+      <td className={`${state && "text-decoration-line-through"}`}>
+        {description}
+      </td>
       <td>{state ? "complete" : "pending"}</td>
       <td className="dropdown">
         <button
-          className="btn btn-light dropdown-toggle"
+          className="btn btn-sm btn-light dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -24,6 +33,7 @@ const Task: React.FC<Props> = ({ task }) => {
         <ul className="dropdown-menu">
           <li>
             <button
+              onClick={() => deleteTask(id)}
               className="dropdown-item text-center btn btn-danger"
               type="button"
             >
@@ -31,6 +41,7 @@ const Task: React.FC<Props> = ({ task }) => {
             </button>
           </li>
           <button
+            onClick={() => updateTask(id)}
             className="dropdown-item text-center btn btn-info"
             type="button"
           >
