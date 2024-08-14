@@ -25,6 +25,8 @@ function App() {
     setTasks(newTasks);
   };
 
+  console.log("Hola");
+
   // Funcion para actualizar tareas
   const updateTask = (id: number) => {
     newTasks = tasks.map((task: Object) => {
